@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 django = "*"
-djongo = "*"
 
 [dev-packages]
 python-dotenv = "*"

@@ -140,7 +140,9 @@ GitHub.sublime-settings
 !.vscode/extensions.json
 .history
 
-
 # Javascript files
 node_modules/
 yarn.lock
+
+# Miscellaneous
+credentials
