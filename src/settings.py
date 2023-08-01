@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Project Applications
     "core.apps.CoreConfig",
+    "userprofile.apps.UserprofileConfig",
 ]
 
 MIDDLEWARE = [
