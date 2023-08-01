@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev:styles": "yarn tailwindcss -i ./static/src/styles.css -o ./static/build/main.css --watch"
+  },
   "devDependencies": {
     "tailwindcss": "^3.3.3"
   }

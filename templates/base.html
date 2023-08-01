@@ -1,0 +1,22 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TealCRM</title>
+  <link href="{% static 'build/main.css' %}" rel="stylesheet">
+</head>
+<body>
+<nav class="py-4 px-6 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white shadow shadow-slate-600 mb-4">
+    <div>
+        <a href="{% url 'core:home' %}" class="text-xl">Teal<span class="text-emerald-500">CRM</span></a>
+    </div>
+</nav>
+  <main class="container max-w-7xl mx-auto">
+      {% block content %}
+      {% endblock %}
+  </main>
+</body>
+</html>
