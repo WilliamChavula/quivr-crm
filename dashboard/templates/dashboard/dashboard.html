@@ -3,25 +3,20 @@
 
 
 {% block content %}
-    <h1 class="text-gray-950">Dashboard</h1>
+    <h1 class="text-3xl font-bold mb-2">Dashboard</h1>
+    <hr class="mb-2" />
     <div class="p-1 bg-gray-50 flex gap-6">
-        <a class="no-underline text-sm text-emerald-500" href="{% url 'lead:create' %}">
-            <div class="w-fit text-base flex items-center">
+        <a class="no-underline text-sm text-sky-600 hover:text-sky-800" href="{% url 'lead:create' %}">
                 <i class="fa fa-plus mr-1 fa-xs"></i>
                 Add Lead
-            </div>
         </a>
-        <a class="no-underline text-sm text-emerald-500" href="{% url 'lead:list' %}">
-            <div class="w-fit text-base flex items-center">
+        <a class="no-underline text-sm text-sky-600 hover:text-sky-800" href="{% url 'lead:list' %}">
                 <i class="fa-solid mr-1 fa-list fa-xs"></i>
                 View Leads
-            </div>
         </a>
-        <a class="no-underline text-sm text-emerald-500" href="{% url 'client:list' %}">
-            <div class="w-fit text-base flex items-center">
+        <a class="no-underline text-sm text-sky-600 hover:text-sky-800" href="{% url 'client:list' %}">
                 <i class="fa-solid mr-1 fa-users fa-xs"></i>
                 View Clients
-            </div>
         </a>
     </div>
 {% endblock %}

@@ -67,7 +67,7 @@ class LeadDeleteView(LoginRequiredMixin, View):
 
         lead.delete()
 
-        messages.success(request, "Lead successfully deleted.")
+        messages.info(request, "Lead deleted.")
 
         return redirect("lead:list")
 
