@@ -8,6 +8,7 @@ from django.views.generic import DetailView, FormView, ListView, UpdateView, Vie
 
 from .forms import LeadCreateForm
 from .models import Lead
+from client.models import Client
 
 
 class LeadCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
@@ -34,7 +35,7 @@ class LeadListView(LoginRequiredMixin, ListView):
         # original qs
         qs = super().get_queryset()
         # filter by a variable captured from url, for example
-        return qs.filter(created_by=self.request.user)
+        return qs.filter(created_by=self.request.user, is_client=False)
 
 
 class LeadDetailView(LoginRequiredMixin, DetailView):
@@ -67,5 +68,24 @@ class LeadDeleteView(LoginRequiredMixin, View):
         lead.delete()
 
         messages.success(request, "Lead successfully deleted.")
+
+        return redirect("lead:list")
+
+
+class LeadToClientView(LoginRequiredMixin, View):
+    def get(self, request, pk: int, *args, **kwargs):
+        lead = get_object_or_404(Lead, created_by=request.user, pk=pk)
+
+        Client.objects.create(
+            name=lead.name,
+            email=lead.email,
+            description=lead.description,
+            created_by=lead.created_by,
+        )
+
+        lead.is_client = True
+        lead.save()
+
+        messages.success(request, f"Congratulations! Lead {lead.name} is now a client")
 
         return redirect("lead:list")

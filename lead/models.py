@@ -29,6 +29,7 @@ class Lead(models.Model):
     status = models.CharField(
         max_length=10, choices=LeadStatus.choices, default=LeadStatus.NEW
     )
+    is_client = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
