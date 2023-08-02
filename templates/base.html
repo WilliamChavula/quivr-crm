@@ -24,7 +24,7 @@
         </div>
     {% else %}
         <div>
-{#            <a href="{% url 'accounts:dashboard' %}" aria-label="Sign in Button" class="inline-block p-2 bg-transparent outline-0 text-gray-50 text-sm border border-gray-900 rounded-sm mr-2">Dashboard</a>#}
+            <a href="{% url 'dashboard:board' %}" aria-label="Sign in Button" class="inline-block p-2 bg-transparent outline-0 text-gray-50 text-sm border border-gray-900 rounded-sm mr-2">Dashboard</a>
             <a href="{% url 'accounts:logout' %}" aria-label="Log in Button" class="inline-block p-2 bg-amber-500 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm">Logout</a>
         </div>
     {% endif %}

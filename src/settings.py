@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     # Project Applications
     "core.apps.CoreConfig",
     "userprofile.apps.UserprofileConfig",
+    "dashboard.apps.DashboardConfig",
 ]
 
 MIDDLEWARE = [
@@ -88,8 +89,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "core.UserEntity"
 
-LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "/dashboard/"
+LOGIN_URL = "accounts:login"
+LOGIN_REDIRECT_URL = "dashboard:board"
 LOGOUT_REDIRECT_URL = "core:home"
 
 # Internationalization
