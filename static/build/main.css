@@ -1414,6 +1414,16 @@ div > ul {
   color: rgb(240 249 255 / var(--tw-text-opacity));
 }
 
+.hover\:text-sky-950:hover {
+  --tw-text-opacity: 1;
+  color: rgb(8 47 73 / var(--tw-text-opacity));
+}
+
+.hover\:text-sky-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(7 89 133 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   text-decoration-line: underline;
 }

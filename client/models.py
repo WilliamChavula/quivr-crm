@@ -8,7 +8,7 @@ User: Final[UserModel] = get_user_model()
 
 
 class Client(models.Model):
-    name = models.CharField(max_length=255, help_text="Name of Client")
+    name = models.CharField(max_length=255)
     email = models.EmailField()
     description = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(
