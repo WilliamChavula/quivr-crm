@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User as UserModel
 
+from team.models import Team
+
 User: Final[UserModel] = get_user_model()
 
 
@@ -20,6 +22,7 @@ class Lead(models.Model):
         LOST = "lost"
 
     name = models.CharField(max_length=255, help_text="Name or Company of the lead")
+    teams = models.ForeignKey(Team, related_name="leads", on_delete=models.CASCADE)
     email = models.EmailField()
     description = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, related_name="leads", on_delete=models.CASCADE)
