@@ -7,7 +7,7 @@
             <span>Back</span>
         </a>
 
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="overflow-x-auto mx-auto">
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
           <div class="overflow-hidden">
             <table class="min-w-full text-center text-sm font-light">
@@ -18,18 +18,33 @@
                   <th scope="col" class=" px-6 py-4">Priority</th>
                   <th scope="col" class=" px-6 py-4">Status</th>
                   <th scope="col" class=" px-6 py-4">Description</th>
+                  <th scope="col" class=" px-6 py-4">Created</th>
+                  <th scope="col" class=" px-6 py-4">Modified</th>
+                  <th scope="col" class=" px-6 py-4"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="border-b dark:border-neutral-500">
-                  <td class="whitespace-nowrap  px-6 py-4 font-medium">{{ lead.name }}</td>
+                  <td class="px-6 py-4 font-medium">{{ lead.name }}</td>
                   <td class="whitespace-nowrap  px-6 py-4">
                      <span class="inline-block border border-rose-400 bg-rose-200 p-1 rounded-sm"> {{ lead.get_priority_display }} </span>
                   </td>
                   <td class="whitespace-nowrap  px-6 py-4">
                       <span class="inline-block border border-slate-400 bg-slate-300 p-1 rounded-sm">{{ lead.get_status_display }} </span>
                   </td>
-                  <td class="whitespace-nowrap  px-6 py-4">{% if lead.description %}{{ lead.description }}{% endif %}</td>
+                  <td class="px-6 py-4 max-w-sm text-left">{% if lead.description %}{{ lead.description }}{% endif %}</td>
+                  <td class="px-6 py-4">{{ lead.created_at|date:'M d, y' }}</td>
+                  <td class="px-6 py-4">{{ lead.updated_at|date:'M d, y' }}</td>
+                  <td class="px-3 py-3">
+                      <a href="{% url 'lead:delete' lead.id %}" class="inline-block mr-2 group transition-colors duration-200 outline-0 text-sm font-medium rounded-sm uppercase">
+                          <i class="fa-solid fa-trash-can fa-lg text-rose-600 group-hover:text-rose-700 text-xl"></i>
+                          <span class="sr-only">Delete Lead</span>
+                      </a>
+                      <a href="{% url 'lead:update' lead.id %}" class="inline-block group transition-colors duration-200 outline-0 text-sm font-medium rounded-sm uppercase">
+                          <i class="fa-regular fa-pen-to-square fa-lg text-emerald-500 group-hover:text-emerald-700 text-xl"></i>
+                          <span class="sr-only">Update Lead</span>
+                      </a>
+                  </td>
                 </tr>
               </tbody>
             </table>

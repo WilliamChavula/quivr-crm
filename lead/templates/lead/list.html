@@ -3,42 +3,51 @@
 
 
 {% block content %}
-    <h1 class="text-3xl font-bold mb-4 text-center">Your Leads</h1>
 
+    <h1 class="text-3xl font-bold mb-4">Your Leads</h1>
+    <hr />
     <a href="{% url 'dashboard:board' %}" class="text-sm mb-1">
         <i class="fa-solid fa-chevron-left mr-2"></i>
         <span>Back</span>
     </a>
     <div class="flex flex-col justify-center items-center w-full">
-          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-              <div class="overflow-hidden">
-                <table class="min-w-full text-left text-sm font-light">
-                  <thead class="border-b font-medium dark:border-neutral-500">
-                    <tr>
-                      <th scope="col" class="px-6 py-4">Name</th>
-                      <th scope="col" class="px-6 py-4">Email</th>
-                      <th scope="col" class="px-6 py-4">Status</th>
-                      <th scope="col" class="px-6 py-4">Created on</th>
-                      <th scope="col" class="px-6 py-4"></th>
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead class="border-b font-medium dark:border-neutral-500">
+                <tr>
+                  <th scope="col" class="px-6 py-4">Name</th>
+                  <th scope="col" class="px-6 py-4">Email</th>
+                  <th scope="col" class="px-6 py-4">Status</th>
+                  <th scope="col" class="px-6 py-4">Created on</th>
+                  <th scope="col" class="px-6 py-4"></th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for lead in leads %}
+                    <tr class="border-b transition duration-300 ease-in-out hover:bg-slate-600 dark:border-neutral-500 dark:hover:bg-slate-500 hover:text-slate-50">
+                      <td class="whitespace-nowrap px-6 py-4">{{ lead.name }}</td>
+                      <td class="whitespace-nowrap px-6 py-4">{{ lead.email }}</td>
+                      <td class="whitespace-nowrap px-6 py-4">{{ lead.get_status_display }}</td>
+                      <td class="whitespace-nowrap px-6 py-4">{{ lead.created_at|date:"M d, Y" }}</td>
+                      <td class="whitespace-nowrap px-6 py-4">
+                          <a href="{% url 'lead:detail' lead.id %}" class="inline-block p-2 bg-amber-500 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm uppercase">View</a>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                  {% for lead in leads %}
-                        <tr class="border-b transition duration-300 ease-in-out hover:bg-slate-600 dark:border-neutral-500 dark:hover:bg-slate-500 hover:text-slate-50">
-                          <td class="whitespace-nowrap px-6 py-4">{{ lead.name }}</td>
-                          <td class="whitespace-nowrap px-6 py-4">{{ lead.email }}</td>
-                          <td class="whitespace-nowrap px-6 py-4">{{ lead.get_status_display }}</td>
-                          <td class="whitespace-nowrap px-6 py-4">{{ lead.created_at|date:"M d, Y" }}</td>
-                          <td class="whitespace-nowrap px-6 py-4">
-                              <a href="{% url 'lead:detail' lead.id %}" class="inline-block p-2 bg-amber-500 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm uppercase">View</a>
-                          </td>
-                        </tr>
-                  {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                  {% empty %}
+                  <div class="flex justify-center items-center gap-2">
+                    <p class="px-2 text-slate-600 italic text-sm text-center">No leads created yet.</p>
+                    <a class="no-underline text-sm text-emerald-500" href="{% url 'lead:create' %}">
+                            <i class="fa fa-plus mr-1 fa-xs"></i>
+                            Add Lead
+                    </a>
+                  </div>
+              {% endfor %}
+              </tbody>
+            </table>
           </div>
+        </div>
+      </div>
     </div>
 {% endblock %}
