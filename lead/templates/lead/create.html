@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-    {% block title %}Sign up {% endblock %}
+{% block title %}Dashboard{% endblock %}
+
 
 {% block content %}
     <div class="flex flex-col justify-center items-center space-y-4">
-        <h1 class="text-3xl font-bold mb-4">Sign up</h1>
+        <h1 class="text-3xl font-bold mb-4">Add Lead</h1>
         <hr />
         <div class="flex flex-col mt-5 border border-slate-500 rounded-sm p-16">
         <form method="post" class="text-sm">
@@ -22,7 +23,7 @@
                 </div>
             {% endfor %}
 
-            <button class="inline-block p-2 bg-amber-500 mt-4 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm">Sign up</button>
+            <button class="inline-block p-2 bg-amber-500 mt-4 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm">Add Lead</button>
         </form>
         </div>
     </div>

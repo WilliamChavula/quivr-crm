@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+    {% block title %}{{ lead.name }} {% endblock %}
+
+{% block content %}
+        <a href="{% url 'lead:list' %}" class="text-sm mb-1">
+            <i class="fa-solid fa-chevron-left mr-2"></i>
+            <span>Back</span>
+        </a>
+
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-center text-sm font-light">
+              <thead
+                class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+                <tr>
+                  <th scope="col" class=" px-6 py-4">Name</th>
+                  <th scope="col" class=" px-6 py-4">Priority</th>
+                  <th scope="col" class=" px-6 py-4">Status</th>
+                  <th scope="col" class=" px-6 py-4">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b dark:border-neutral-500">
+                  <td class="whitespace-nowrap  px-6 py-4 font-medium">{{ lead.name }}</td>
+                  <td class="whitespace-nowrap  px-6 py-4">
+                     <span class="inline-block border border-rose-400 bg-rose-200 p-1 rounded-sm"> {{ lead.get_priority_display }} </span>
+                  </td>
+                  <td class="whitespace-nowrap  px-6 py-4">
+                      <span class="inline-block border border-slate-400 bg-slate-300 p-1 rounded-sm">{{ lead.get_status_display }} </span>
+                  </td>
+                  <td class="whitespace-nowrap  px-6 py-4">{% if lead.description %}{{ lead.description }}{% endif %}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
