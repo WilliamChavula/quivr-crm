@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "userprofile.apps.UserprofileConfig",
     "dashboard.apps.DashboardConfig",
     "lead.apps.LeadConfig",
+    "client.apps.ClientConfig",
 ]
 
 MIDDLEWARE = [
