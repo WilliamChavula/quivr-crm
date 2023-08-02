@@ -29,8 +29,8 @@
                       <td class="whitespace-nowrap px-6 py-4">{{ client.name }}</td>
                       <td class="whitespace-nowrap px-6 py-4">{{ client.email }}</td>
                       <td class="whitespace-nowrap px-6 py-4">{{ client.created_at|date:"M d, Y" }}</td>
-                      <td class="whitespace-nowrap px-6 py-4">
-{#                          <a href="{% url 'client:detail' client.id %}" class="inline-block p-2 bg-amber-500 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm uppercase">View</a>#}
+                      <td class="whitespace-nowrap px-2 py-1">
+                          <a href="{% url 'client:detail' client.id %}" class="inline-block p-2 bg-amber-500 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm uppercase">View</a>
                       </td>
                     </tr>
                   {% empty %}

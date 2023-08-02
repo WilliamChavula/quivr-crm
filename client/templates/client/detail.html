@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+    {% block title %}{{ client.name }} {% endblock %}
+
+{% block content %}
+        <a href="{% url 'client:list' %}" class="text-sm mb-1">
+            <i class="fa-solid fa-chevron-left mr-2"></i>
+            <span>Back</span>
+        </a>
+
+{#        <a href="{% url 'lead:make-client' lead.id %}" class="inline-block group transition-colors duration-200 outline-0 text-sm text-sky-600 hover:text-sky-50 hover:bg-sky-800 px-2 py-1 font-medium rounded-sm mx-6">#}
+{#          Make client#}
+{#          <span class="sr-only">Make client</span>#}
+{#        </a>#}
+      <div class="overflow-x-auto mx-auto">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-center text-sm font-light">
+              <thead
+                class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+                <tr>
+                  <th scope="col" class=" px-6 py-4">Name</th>
+                  <th scope="col" class=" px-6 py-4">Description</th>
+                  <th scope="col" class=" px-6 py-4">Created</th>
+                  <th scope="col" class=" px-6 py-4">Modified</th>
+                  <th scope="col" class=" px-6 py-4"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b dark:border-neutral-500">
+                  <td class="px-6 py-4 font-medium">{{ client.name }}</td>
+                  <td class="px-6 py-4 max-w-sm text-left">{% if client.description %}{{ client.description }}{% endif %}</td>
+                  <td class="px-6 py-4">{{ client.created_at|date:'M d, y' }}</td>
+                  <td class="px-6 py-4">{{ client.updated_at|date:'M d, y' }}</td>
+{#                  <td class="px-3 py-3">#}
+{#                      <a href="{% url 'lead:delete' lead.id %}" class="inline-block mr-2 group transition-colors duration-200 outline-0 text-sm font-medium rounded-sm uppercase">#}
+{#                          <i class="fa-solid fa-trash-can fa-lg text-rose-600 group-hover:text-rose-700 text-xl"></i>#}
+{#                          <span class="sr-only">Delete Lead</span>#}
+{#                      </a>#}
+{#                      <a href="{% url 'lead:update' lead.id %}" class="inline-block group transition-colors duration-200 outline-0 text-sm font-medium rounded-sm uppercase">#}
+{#                          <i class="fa-regular fa-pen-to-square fa-lg text-emerald-500 group-hover:text-emerald-700 text-xl"></i>#}
+{#                          <span class="sr-only">Update Lead</span>#}
+{#                      </a>#}
+{#                  </td>#}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
