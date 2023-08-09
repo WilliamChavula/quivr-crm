@@ -5,14 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TealCRM | {% block title %} Home{% endblock %}</title>
+    <title>QuivrCRM | {% block title %} Home{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{% static 'build/main.css' %}" rel="stylesheet">
 </head>
 <body>
 <nav class="flex items-center justify-between py-4 px-6 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white shadow shadow-slate-600 mb-4">
     <div>
-        <a href="{% url 'core:home' %}" class="text-xl">Teal<span class="text-emerald-500">CRM</span></a>
+        <a href="{% url 'core:home' %}" class="text-xl">Quivr<span class="text-emerald-500">CRM</span></a>
     </div>
     <div class="flex ml-6 gap-3 text-slate-900 dark:text-white">
         <a href="{% url 'core:home' %}" class="text-sm hover:underline hover:underline-offset-4">Home</a>
@@ -26,6 +26,10 @@
     {% else %}
         <div>
             <a href="{% url 'dashboard:board' %}" aria-label="Sign in Button" class="inline-block p-2 bg-transparent outline-0 text-gray-50 text-sm border border-gray-900 rounded-sm mr-2">Dashboard</a>
+            <a href="{% url 'accounts:account' %}" class="inline-block p-2 bg-transparent outline-0 text-gray-50 text-sm border border-gray-900 rounded-sm mr-2">
+                <i class="fa-solid fa-user-gear text-sm text-slate-200"></i>
+                <span class="sr-only">Account</span>
+            </a>
             <a href="{% url 'accounts:logout' %}" aria-label="Log in Button" class="inline-block p-2 bg-amber-500 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm">Logout</a>
         </div>
     {% endif %}
@@ -48,14 +52,17 @@
       {% block content %}
       {% endblock %}
   </main>
+<div id="modals-here"></div>
+
 <footer class="bg-slate-300 text-center mt-6">
     <p class=" py-6 text-xs text-slate-600" id="footer"></p>
 </footer>
+<script src="{% static 'vendor/htmx/htmx.min.js' %}"></script>
 <script>
     const footerElement = document.getElementById('footer')
 
     const currentYr = new Date().getFullYear()
-    footerElement.innerText = `Copyright ©  ${currentYr} TealCRM`;
+    footerElement.innerText = `Copyright ©  ${currentYr} QuivrCRM`;
 </script>
 {% block scripts %}{% endblock %}
 </body>

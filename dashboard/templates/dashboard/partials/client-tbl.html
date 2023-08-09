@@ -1,0 +1,32 @@
+<table class="min-w-full" id="id-client-tbl">
+  <thead class="bg-gray-200 border-b">
+    <tr>
+      <th scope="col" class="cursor-pointer text-sm font-medium text-gray-900 px-6 py-2 text-left">
+        Name
+      </th>
+      <th data-hx-get="{% url 'dashboard:sort-client' %}?sort=preferred_communication&asc={{ asc }}" data-hx-target="#id-client-tbl" data-hx-swap="outerHTML" scope="col" class="cursor-pointer text-sm font-medium text-gray-900 px-6 py-2 text-left">
+        Preferred Communication <i class="ml-2 text-xs fa-solid fa-arrow-down-a-z"></i>
+      </th>
+      <th data-hx-get="{% url 'dashboard:sort-client' %}?sort=team&asc={{ asc }}" data-hx-target="#id-client-tbl" data-hx-swap="outerHTML" scope="col" class="cursor-pointer text-sm font-medium text-gray-900 px-6 py-2 text-left">
+        Team <i class="ml-2 text-xs fa-solid fa-arrow-down-a-z"></i>
+      </th>
+      <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2 text-left">
+
+      </th>
+    </tr>
+  </thead>
+     <tbody>
+        {% for client in clients %}
+        <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+            <td class="px-6 py-2 whitespace-nowrap text-sm text-zinc-600">{{ client.name }}</td>
+            <td class="px-6 py-2 whitespace-nowrap text-sm text-zinc-600">{{ client.preferred_communication|capfirst }}</td>
+            <td class="px-6 py-2 whitespace-nowrap text-sm text-zinc-600">{{ client.team.name }}</td>
+            <td class="px-6 py-2 whitespace-nowrap text-sm text-zinc-600">
+                <a class="no-underline text-sm text-amber-500 hover:text-amber-800 transition-colors duration-200" href="{% url 'client:detail' client.id %}">
+                    <i class="fa-solid fa-up-right-from-square mr-px fa-xs"></i>
+                    View
+                </a>
+            </td>
+        {% endfor %}
+     </tbody>
+ </table>

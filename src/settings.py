@@ -21,6 +21,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd Party Applications
+    "django_browser_reload",
+    "django_tables2",
     # Project Applications
     "core.apps.CoreConfig",
     "userprofile.apps.UserprofileConfig",
@@ -28,6 +31,7 @@ INSTALLED_APPS = [
     "lead.apps.LeadConfig",
     "client.apps.ClientConfig",
     "team.apps.TeamConfig",
+    "channel.apps.ChannelConfig",
 ]
 
 MIDDLEWARE = [
@@ -38,6 +42,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # 3rd Party Middleware
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "src.urls"
@@ -89,6 +95,15 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+DJANGO_TABLES2_TABLE_ATTRS = {
+    "class": "min-w-full",
+    "thead": {
+        "class": "p-2 bg-white border-b",
+    },
+    "th": {"class": "text-sm font-medium text-gray-900 py-2 text-left"},
+    "td": {"class": "p-2 whitespace-nowrap text-sm capitalize text-zinc-600"},
+}
 
 AUTH_USER_MODEL = "core.UserEntity"
 

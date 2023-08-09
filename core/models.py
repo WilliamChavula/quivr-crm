@@ -4,7 +4,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserEntity(AbstractUser):
-    email = models.EmailField(_("email address"), unique=True, blank=True)
+    email = models.EmailField(
+        _("email address"),
+        help_text="Required. Enter a valid email address",
+        unique=True,
+        blank=True,
+    )
     USERNAME_FIELD = "email"
 
     REQUIRED_FIELDS = ["username"]

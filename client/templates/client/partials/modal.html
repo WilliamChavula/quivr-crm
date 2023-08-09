@@ -1,0 +1,18 @@
+{% extends 'core/partials/confirm_delete_modal.html' %}
+
+{% block action_buttons %}
+<div class="modal-footer text-center flex gap-x-6 justify-center items-center">
+  <button type="button"
+          data-hx-get="{% url 'client:delete' confirm_id %}"
+          data-hx-swap="none"
+          class="inline-block bg-red-100 text-rose-800 px-4 py-2 hover:bg-rose-600 transition-colors duration-200 outline-0 text-sm font-medium rounded-sm"
+          onclick="closeModal()">
+            Confirm
+  </button>
+  <button type="button"
+          class="inline-block bg-blue-100 text-blue-800 px-4 py-2 hover:bg-sky-600 transition-colors duration-200 outline-0 text-sm font-medium rounded-sm"
+          onclick="closeModal()">
+            Cancel
+  </button>
+</div>
+{% endblock %}

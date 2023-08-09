@@ -1,0 +1,36 @@
+<div id="modal-backdrop" class="modal-backdrop fade show"></div>
+<div id="modal" class="modal fade show" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="text-slate-700 text-lg font-bold text-center mb-4 uppercase">Confirm Delete</h5>
+        </div>
+        <div class="flex flex-col gap-2  text-zinc-800 justify-center items-center mb-6">
+          <p>Please confirm before proceeding.</p>
+          <p>Note that this action <strong>cannot be undone</strong>.</p>
+        </div>
+          {% block action_buttons %}
+            {#  INSERT MODAL ACTIONS HERE  #}
+          {% endblock %}
+      </div>
+    </div>
+</div>
+
+
+{% block scripts %}
+<script>
+    function closeModal() {
+        const container = document.getElementById("modals-here")
+        const backdrop = document.getElementById("modal-backdrop")
+        const modal = document.getElementById("modal")
+
+        modal.classList.remove("show")
+        backdrop.classList.remove("show")
+
+        setTimeout(function() {
+            container.removeChild(backdrop)
+            container.removeChild(modal)
+        }, 200)
+    }
+</script>
+{% endblock %}

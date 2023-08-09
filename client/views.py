@@ -1,13 +1,24 @@
-from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponse, HttpRequest
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import DetailView, FormView, ListView, UpdateView, View
+from django.views.generic import (
+    DetailView,
+    FormView,
+    ListView,
+    UpdateView,
+    View,
+    TemplateView,
+)
 
 from .forms import ClientCreationForm
+from core.views import ModalMixin
+
 from .models import Client
+from team.models import Team
 
 
 class ClientListView(LoginRequiredMixin, ListView):
@@ -39,7 +50,11 @@ class ClientCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
 
     def form_valid(self, form):
         client = form.save(commit=False)
+        team = Team.objects.get(name__iexact="sales")
+
         client.created_by = self.request.user
+        client.team = team
+
         client.save()
 
         return super(ClientCreateView, self).form_valid(form)
@@ -59,11 +74,18 @@ class ClientUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class ClientDeleteView(LoginRequiredMixin, View):
-    def get(self, request, pk: int, *args, **kwargs):
+    def get(self, request: HttpRequest, pk: int, *args, **kwargs) -> HttpResponse:
         client: Client = get_object_or_404(Client, pk=pk)
 
         client.delete()
 
+        response = HttpResponse()
+        response["HX-Redirect"] = reverse_lazy("client:list")
+
         messages.info(request, "Client deleted.")
 
-        return redirect("client:list")
+        return response
+
+
+class ModalTemplateView(ModalMixin, TemplateView):
+    template_name = "client/partials/modal.html"

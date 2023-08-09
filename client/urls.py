@@ -9,4 +9,5 @@ urlpatterns = [
     path("<int:pk>/detail/", views.ClientDetailView.as_view(), name="detail"),
     path("<int:pk>/update/", views.ClientUpdateView.as_view(), name="update"),
     path("<int:pk>/delete/", views.ClientDeleteView.as_view(), name="delete"),
+    path("confirm/<int:id>", views.ModalTemplateView.as_view(), name="modal"),
 ]

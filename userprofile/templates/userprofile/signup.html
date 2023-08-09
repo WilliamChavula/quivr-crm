@@ -9,19 +9,43 @@
         <form method="post" class="text-sm">
             {% csrf_token %}
 
-            {% for field in form %}
-                <div class="w-full mb-4">
-                    <div class="mb-2 font-medium">{{ field.label }}</div>
-                    <div class="flex flex-col items-start justify-center w-80">
-                    {{ field }}
-                    <p class="text-xs text-slate-500 text-left">{{ field.help_text }}</p>
-                    </div>
-                    <div class="text-rose-600 text-sm">
-                        {{ field.errors }}
-                    </div>
-                </div>
-            {% endfor %}
+{#            {% for field in form %}#}
+{#                <div class="w-full mb-4">#}
+{#                    <div class="mb-2 font-medium">{{ field.label }}</div>#}
+{#                    <div class="flex flex-col items-start justify-center w-80">#}
+{#                    {{ field }}#}
+{#                    <p class="text-xs text-slate-500 text-left">{{ field.help_text }}</p>#}
+{#                    </div>#}
+{#                    <div class="text-rose-600 text-sm">#}
+{#                        {{ field.errors }}#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endfor %}#}
 
+            <div class="mb-6 w-full">
+                <div class="mb-2 font-medium">{{ form.username.label }}</div>
+                <div class="flex flex-col items-start justify-center w-full">{{ form.username }}</div>
+                <p class="text-xs text-slate-500 text-left">{{ form.username.help_text }}</p>
+                <div class="text-rose-600 text-sm">{{ field.errors }}</div>
+            </div>
+            <div class="mb-6 w-full">
+                <div class="mb-2 font-medium">{{ form.email.label }}</div>
+                <div class="flex flex-col items-start justify-center w-full">{{ form.email }}</div>
+                <p class="text-xs text-slate-500 text-left">{{ form.email.help_text }}</p>
+                <div class="text-rose-600 text-sm">{{ field.errors }}</div>
+            </div>
+            <div class="mb-6 w-full">
+                <div class="mb-2 font-medium">{{ form.password1.label }}</div>
+                <div class="flex flex-col items-start justify-center w-full">{{ form.password1 }}</div>
+                <p class="text-xs text-slate-500 text-left">{{ form.password1.help_text }}</p>
+                <div class="text-rose-600 text-sm">{{ field.errors }}</div>
+            </div>
+            <div class="mb-6 w-full">
+                <div class="mb-2 font-medium">{{ form.password2.label }}</div>
+                <div class="flex flex-col items-start justify-center w-full">{{ form.password2 }}</div>
+                <p class="text-xs text-slate-500 text-left">{{ form.password2.help_text }}</p>
+                <div class="text-rose-600 text-sm">{{ field.errors }}</div>
+            </div>
             <button class="inline-block p-2 bg-amber-500 mt-4 hover:bg-amber-600 transition-colors duration-200 outline-0 text-gray-900 text-sm font-medium rounded-sm">Sign up</button>
         </form>
         </div>

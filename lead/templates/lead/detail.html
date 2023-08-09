@@ -7,7 +7,7 @@
             <span>Back</span>
         </a>
 
-        <a href="{% url 'lead:make-client' lead.id %}" class="inline-block group transition-colors duration-200 outline-0 text-sky-600 hover:text-sky-800 px-2 py-1 font-medium rounded-sm mx-6">
+        <a href="{% url 'lead:make-client' lead.id %}" class="inline-block group transition-colors duration-200 outline-0 text-sky-600 hover:text-sky-800 px-2 py-1 text-sm rounded-sm mx-6">
           Make client
           <span class="sr-only">Make client</span>
         </a>
@@ -40,7 +40,10 @@
                   <td class="px-6 py-4">{{ lead.created_at|date:'M d, y' }}</td>
                   <td class="px-6 py-4">{{ lead.updated_at|date:'M d, y' }}</td>
                   <td class="px-3 py-3">
-                      <a href="{% url 'lead:delete' lead.id %}" class="inline-block mr-2 group transition-colors duration-200 outline-0 text-sm font-medium rounded-sm uppercase">
+                      <a data-hx-get="{% url 'lead:modal' lead.id %}"
+                         data-hx-target="#modals-here"
+                         data-hx-trigger="click"
+                         class="inline-block mr-2 group transition-colors duration-200 outline-0 text-sm font-medium rounded-sm uppercase">
                           <i class="fa-solid fa-trash-can fa-lg text-rose-600 group-hover:text-rose-700 text-xl"></i>
                           <span class="sr-only">Delete Lead</span>
                       </a>
@@ -52,7 +55,16 @@
                 </tr>
               </tbody>
             </table>
+
           </div>
+        </div>
+        <div class="">
+            <div class="" data-hx-get="{% url 'lead:communication_channel'%}?lead_id={{ lead.id  }}" data-hx-trigger="load once" data-hx-swap="outerHTML">
+                {% include 'lead/partials/communication_channel_chart.html' %}
+            </div>
+            <div class="" data-hx-get="{% url 'lead:comm-by-yr'%}?lead_id={{ lead.id  }}" data-hx-trigger="load once" data-hx-swap="outerHTML">
+                {% include 'lead/partials/communication_channel_by_yr_chart.html' %}
+            </div>
         </div>
       </div>
 
