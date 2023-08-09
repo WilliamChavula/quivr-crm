@@ -1,3 +1,4 @@
+from collections import namedtuple
 from datetime import datetime
 from pathlib import Path
 from random import randint
@@ -95,6 +96,15 @@ def seed_channels(file_name: str) -> None:
     data_path = Path.cwd().joinpath(f"core/data/{file_name}")
     data = pd.read_csv(data_path)
 
+    row: namedtuple(
+        "Record",
+        [
+            "mode",
+            "team_contacting",
+            "date_contacted",
+            "content_object",
+        ],
+    )
     channels = [
         Channel(
             mode=Mode(row.mode),
@@ -118,14 +128,11 @@ def _get_team() -> Team:
 
 def _get_content_type(obj_type: str) -> Union[Lead, Client]:
     idx = randint(1, 100)
-    obj: Union[Lead, Client]
 
     if idx == 5:
         idx += 1
 
     if obj_type == "Lead":
-        obj = Lead.objects.get(pk=idx)
+        return Lead.objects.get(pk=idx)
     elif obj_type == "Client":
-        obj = Client.objects.get(pk=idx)
-
-    return obj
+        return Client.objects.get(pk=idx)
